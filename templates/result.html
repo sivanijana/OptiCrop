@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prediction Result | OptiCrop</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/animations.css') }}" />
+</head>
+<body>
+  {% include 'navbar.html' %}
+  <section class="container py-5 mt-5">
+    <div class="row g-4">
+      <div class="col-lg-7">
+        <div class="glass-card p-4 p-md-5 text-center">
+          <h1 class="display-5 fw-bold mb-3">Recommended Crop</h1>
+          <h2 class="text-accent display-4 fw-bold text-capitalize">{{ result.crop }}</h2>
+          <div class="my-4">
+            <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&w=800&q=80" class="img-fluid rounded-4 shadow" alt="Crop field" />
+          </div>
+          <div class="row g-3 mt-3">
+            <div class="col-md-6"><div class="mini-card p-3"><i class="fas fa-bullseye"></i><p>Confidence</p><strong>{{ result.confidence }}</strong></div></div>
+            <div class="col-md-6"><div class="mini-card p-3"><i class="fas fa-calendar-alt"></i><p>Suitable Season</p><strong>{{ result.profile.season }}</strong></div></div>
+            <div class="col-md-6"><div class="mini-card p-3"><i class="fas fa-flask"></i><p>Fertilizer</p><strong>{{ result.profile.fertilizer }}</strong></div></div>
+            <div class="col-md-6"><div class="mini-card p-3"><i class="fas fa-tint"></i><p>Water Requirement</p><strong>{{ result.profile.water }}</strong></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-5">
+        <div class="glass-card p-4 p-md-5">
+          <h4 class="fw-bold mb-3">Farming Tips</h4>
+          <p class="text-muted">{{ result.profile.tips }}</p>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item bg-transparent"><strong>Temperature Range:</strong> {{ result.profile.temp }}</li>
+            <li class="list-group-item bg-transparent"><strong>Humidity Range:</strong> {{ result.profile.humidity }}</li>
+            <li class="list-group-item bg-transparent"><strong>Nitrogen:</strong> {{ result.inputs.N }}</li>
+            <li class="list-group-item bg-transparent"><strong>Phosphorous:</strong> {{ result.inputs.P }}</li>
+            <li class="list-group-item bg-transparent"><strong>Potassium:</strong> {{ result.inputs.K }}</li>
+          </ul>
+          <div class="d-flex flex-wrap gap-3 mt-4">
+            <a href="{{ url_for('predict') }}" class="btn btn-primary">Predict Again</a>
+            <a href="{{ url_for('home') }}" class="btn btn-outline-light">Home</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {% include 'footer.html' %}
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

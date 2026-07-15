@@ -1,0 +1,5 @@
+.fade-in { animation: fadeIn 0.8s ease both; }
+@keyframes fadeIn { from { opacity:0; transform:translateY(18px);} to { opacity:1; transform:translateY(0);} }
+@keyframes float { 0%,100% { transform:translateY(0);} 50% { transform:translateY(-10px);} }
+.hero-dashboard { animation: float 4s ease-in-out infinite; }
+.counter { transition: all 0.3s ease; }
