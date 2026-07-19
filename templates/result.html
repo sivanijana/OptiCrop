@@ -19,8 +19,9 @@
           <h1 class="display-5 fw-bold mb-3">Recommended Crop</h1>
           <h2 class="text-accent display-4 fw-bold text-capitalize">{{ result.crop }}</h2>
           <div class="my-4">
-            <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&w=800&q=80" class="img-fluid rounded-4 shadow" alt="Crop field" />
-          </div>
+<img src="{{ url_for('static', filename='images/' + result.crop.lower() + '.jpg') }}"
+     class="img-fluid rounded-4 shadow"
+     alt="{{ result.crop }}">          </div>
           <div class="row g-3 mt-3">
             <div class="col-md-6"><div class="mini-card p-3"><i class="fas fa-bullseye"></i><p>Confidence</p><strong>{{ result.confidence }}</strong></div></div>
             <div class="col-md-6"><div class="mini-card p-3"><i class="fas fa-calendar-alt"></i><p>Suitable Season</p><strong>{{ result.profile.season }}</strong></div></div>
